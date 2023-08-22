@@ -6,7 +6,8 @@ import img3 from "../../../assets/banner/slider-3.webp";
 
 const Banner = () => {
   return (
-    <Carousel autoPlay={true} interval={3000} infiniteLoop={true}>
+    <div className="text-center">
+      <Carousel autoPlay={true} interval={3000} infiniteLoop={true}>
       <div>
         <img src={img1} alt="" />
       </div>
@@ -17,6 +18,7 @@ const Banner = () => {
         <img src={img3} alt="" />
       </div>
     </Carousel>
+    </div>
   );
 };
 

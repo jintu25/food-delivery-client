@@ -1,8 +1,9 @@
+import Banner from "./Banner";
 
 const About = () => {
     return (
         <div>
-            <h1 className="text-3xl font-semibold">this is about section...</h1>
+            <Banner></Banner>
         </div>
     );
 };
