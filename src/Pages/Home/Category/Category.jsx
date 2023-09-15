@@ -51,27 +51,27 @@ const Category = () => {
         className="mySwiper">
         <SwiperSlide>
           <img className="w-full" src={slide1} alt="" />
-          <h2 className="uppercase text-xl lg:text-3xl  text-center relative top-[-50px] text-white shadow-2xl font-[cursive] font-semibold">Salad</h2>
+          <h2 className="uppercase text-xl lg:text-3xl  text-center relative top-[-50px] text-white shadow-2xl font-[cursive]  font-medium">Salad</h2>
         </SwiperSlide>
         <SwiperSlide>
           <img className="w-full" src={slide2} alt="" />
-          <h2 className="uppercase text-xl lg:text-3xl  text-center relative top-[-50px] text-white shadow-2xl font-[cursive] font-semibold">Pizzas</h2>
+          <h2 className="uppercase text-xl lg:text-3xl  text-center relative top-[-50px] text-white shadow-2xl font-[cursive]  font-medium">Pizzas</h2>
         </SwiperSlide>
         <SwiperSlide>
           <img className="w-full" src={slide3} alt="" />
-          <h2 className="uppercase text-xl lg:text-3xl  text-center relative top-[-50px] text-white shadow-2xl font-[cursive] font-semibold">Soups</h2>
+          <h2 className="uppercase text-xl lg:text-3xl  text-center relative top-[-50px] text-white shadow-2xl font-[cursive]  font-medium">Soups</h2>
         </SwiperSlide>
         <SwiperSlide>
           <img className="w-full" src={slide4} alt="" />
-          <h2 className="uppercase text-xl lg:text-3xl  text-center relative top-[-50px] text-white shadow-2xl font-[cursive] font-semibold">Desserts</h2>
+          <h2 className="uppercase text-xl lg:text-3xl  text-center relative top-[-50px] text-white shadow-2xl font-[cursive]  font-medium">Desserts</h2>
         </SwiperSlide>
         <SwiperSlide>
           <img className="w-full" src={slide5} alt="" />
-          <h2 className="uppercase text-xl lg:text-3xl  text-center relative top-[-50px] text-white shadow-2xl font-[cursive] font-semibold">Burgers</h2>
+          <h2 className="uppercase text-xl lg:text-3xl  text-center relative top-[-50px] text-white shadow-2xl font-[cursive]  font-medium">Burgers</h2>
         </SwiperSlide>
         <SwiperSlide>
           <img className="w-full" src={slide6} alt="" />
-          <h2 className="uppercase text-xl lg:text-3xl  text-center relative top-[-50px] text-white shadow-2xl font-[cursive] font-semibold">Fried</h2>
+          <h2 className="uppercase text-xl lg:text-3xl  text-center relative top-[-50px] text-white shadow-2xl font-[cursive]  font-medium">Fried</h2>
         </SwiperSlide>
       </Swiper>
     </div>

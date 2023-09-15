@@ -1,9 +1,10 @@
-import Banner from "./Banner";
 
+import image from '../../assets/about/hero_about_us.jpg'
+import BannerSection from '../Shared/BannerSection/BannerSection';
 const About = () => {
     return (
         <div>
-            <Banner></Banner>
+            <BannerSection img={image} content={'About Us'}></BannerSection>
         </div>
     );
 };

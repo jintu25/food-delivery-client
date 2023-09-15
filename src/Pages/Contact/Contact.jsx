@@ -1,9 +1,12 @@
-
+import BannerSection from "../Shared/BannerSection/BannerSection";
+import image from '../../assets/contact/contact.jpg'
+import ContactSec from "../Home/ContactSec/ContactSec";
 
 const Contact = () => {
     return (
         <div>
-            <h2 className="text-3xl font-semibold">this is contact section..</h2>
+             <BannerSection img={image} content={'Contact Us'}></BannerSection>
+             <ContactSec></ContactSec>
         </div>
     );
 };

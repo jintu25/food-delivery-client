@@ -1,36 +1,91 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Providers/AuthProvider";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import useCart from "../../../Hooks/useCart";
 
 const NavBar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const [cart] = useCart()
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
   const menuOptions = (
     <>
       <li>
-        <Link to='/' className="hover:text-orange-500 text-[16px] font-semibold ">Home</Link>
+        <Link
+          to="/"
+          className="hover:text-orange-500 text-[16px] font-semibold ">
+          Home
+        </Link>
       </li>
       <li>
-        <Link to='/about' className="hover:text-orange-500 text-[16px] font-semibold ">
+        <Link
+          to="/about"
+          className="hover:text-orange-500 text-[16px] font-semibold ">
           About Us
         </Link>
       </li>
       <li>
-        <Link to='/' className="hover:text-orange-500 text-[16px] font-semibold ">
-          Dashboard
+        <Link
+          to="/menu"
+          className="hover:text-orange-500 text-[16px] font-semibold ">
+          Our Menu
         </Link>
       </li>
       <li>
-        <Link to='/contact' className="hover:text-orange-500 text-[16px] font-semibold ">
+        <Link
+          to="/order/desserts"
+          className="hover:text-orange-500 text-[16px] font-semibold ">
+          Order
+        </Link>
+      </li>
+
+      <li>
+        <Link
+          to="/contact"
+          className="hover:text-orange-500 text-[16px] font-semibold ">
           Contact Us
         </Link>
       </li>
-      <li>
-        <a className="hover:text-orange-500 text-[16px] font-semibold ">
-          Our Menu
-        </a>
-      </li>
+
       <li>
         <a className="hover:text-orange-500 text-[16px] font-semibold ">
           Our Shop
         </a>
       </li>
+        <li className="mr-4">
+          <Link to="/dashboard/myCart">
+            <button>
+              <h1 className="text-2xl">
+                <AiOutlineShoppingCart></AiOutlineShoppingCart>
+              </h1>
+              <div className="top-[-8px] right-[0px] font-semibold absolute">{cart?.length || 0}</div>
+            </button>
+          </Link>
+        </li>
+      {user ? (
+        <>
+          <li>
+            <button
+              onClick={handleLogOut}
+              to="/login"
+              className="btn btn-neutral btn-sm">
+              Log Out
+            </button>
+          </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <Link to="/login" className="btn btn-primary btn-sm">
+              Login
+            </Link>
+          </li>
+        </>
+      )}
     </>
   );
   return (
@@ -64,7 +119,7 @@ const NavBar = () => {
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{menuOptions}</ul>
+          <ul className="menu menu-horizontal items-center px-1">{menuOptions}</ul>
         </div>
         {/* <div className="navbar-end">
           <a className="btn">Button</a>
