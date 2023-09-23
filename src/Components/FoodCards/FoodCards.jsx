@@ -11,7 +11,6 @@ const FoodCards = ({ item }) => {
   const navigate = useNavigate()
   const location = useLocation()
   const handleAddToCart = item => {
-    console.log(item)
     if (user && user.email) {
       const cartItem = {menuId: _id, name, price, image, email: user.email }
       // Send a POST request with the item data to add it to the cart

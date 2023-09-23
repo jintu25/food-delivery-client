@@ -1,15 +1,14 @@
 import React from "react";
 import useCart from "../../../Hooks/useCart";
 import { FaTrashAlt } from "react-icons/fa";
-import { useState } from "react";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const MyCart = () => {
   const [cart, refetch] = useCart();
   const { email } = cart;
   const total = cart.reduce((sum, item) => item.price + sum, 0).toFixed(2)
 
-  const [itemsList, setItemsList] = useState();
   const handleDelete = (item) => {
     Swal.fire({
         title: 'Are you sure?',
@@ -44,7 +43,7 @@ const MyCart = () => {
       <div className="flex justify-evenly mb-4">
         <h2 className="text-sky-600 font-semibold text-xl">total Food: {cart.length}</h2>
         <h3 className="text-xl font-bold text-slate-600">total Price: ${total}</h3>
-        <button className="btn btn-primary btn-sm">pay</button>
+        <Link to='/dashboard/payment'><button className="btn btn-primary btn-sm">pay</button></Link>
       </div>
 
       <div className="overflow-x-auto">

@@ -46,7 +46,7 @@ const Registration = () => {
         navigate('/')
       })
       .catch(error => {
-        console.log(error)
+        alert(error)
       })
     })
   };

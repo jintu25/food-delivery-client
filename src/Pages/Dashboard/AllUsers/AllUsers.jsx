@@ -1,16 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import { FaTrashAlt, FaUserEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const AllUsers = () => {
-  const {
-    isLoading,
-    refetch,
-    data: users = [],
-  } = useQuery(["users"], async () => {
-    const res = await fetch("http://localhost:5000/users");
-    return res.json();
-  });
+  const token = localStorage.getItem("access-token");
+
+  const [axiosSecure] = useAxiosSecure();
+  const { data: users = [], refetch } = useQuery(['users'], async () => {
+      const res = await axiosSecure.get('/users')
+      return res.data;
+  })
+
   const handleDelete = (user) => {
     Swal.fire({
       title: "Are you sure?",
@@ -36,24 +37,26 @@ const AllUsers = () => {
     });
   };
 
-  const handleMakeAdmin = (user) => {
-    fetch(`http://localhost:5000/users/admin/${user._id}`, {
-      method: "PATCH",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.modifiedCount > 0) {
+const handleMakeAdmin = user =>{
+  fetch(`http://localhost:5000/users/admin/${user._id}`, {
+      method: 'PATCH'
+  })
+  .then(res => res.json())
+  .then(data => {
+
+      if(data.modifiedCount){
           refetch();
           Swal.fire({
-            position: "center",
-            icon: "success",
-            title: `${user.name} is an admin now`,
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      });
-  };
+              position: 'top-end',
+              icon: 'success',
+              title: `${user.name} is an Admin Now!`,
+              showConfirmButton: false,
+              timer: 1500
+            })
+      }
+  })
+}
+
   return (
     <div className="bg-white p-8 shadow-2xl rounded-xl">
       <div className="flex justify-evenly mb-4">
@@ -77,21 +80,21 @@ const AllUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user, index) => (
-              <tr key={user._id} user={user}>
+            {users?.map((user, index) => (
+              <tr key={user?._id} user={user}>
                 <td>{index + 1}</td>
                 <td className="text-[16px] font-medium">{user.name}</td>
                 <td className="text-[16px] font-medium">{user.email}</td>
                 <td className="font-bold text-sky-600">
-                  {user.role === "admin" ? (
+                  {user?.role === "admin" ? 
                     "admin"
-                  ) : (
+                   : 
                     <button
                       onClick={() => handleMakeAdmin(user)}
                       className="btn btn-accent text-white btn-sm text-lg">
                       <FaUserEdit></FaUserEdit>
                     </button>
-                  )}
+                  }
                 </td>
                 <td>
                   <button

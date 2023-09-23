@@ -10,18 +10,21 @@ import {
   FaUsers,
   FaUtensilSpoon,
   FaBook,
+  FaListUl,
 } from "react-icons/fa";
 import useCart from "../Hooks/useCart";
+import useAdmin from "../Hooks/useAdmin";
 
 const DashboardLayout = () => {
   const { user } = useContext(AuthContext);
   const [cart] = useCart();
 
-  const isAdmin = true;
+  // const isAdmin = false;
+  const [isAdmin] = useAdmin()
   return (
-    <div className="drawer lg:drawer-open bg-slate-200">
+    <div className="drawer lg:drawer-open bg-white md:bg-slate-200">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content flex flex-col py-10 px-6 ">
+      <div className="drawer-content flex flex-col p-5 px-2 md:py-10 md:px-6 ">
         {/* Page content here */}
         <Outlet></Outlet>
         <label
@@ -35,9 +38,10 @@ const DashboardLayout = () => {
         <ul className="menu p-4 w-80 border-r-2 border-b-slate-600 h-full mr-6 bg-[#2d53da]">
           {isAdmin ? (
             <>
+            {/* admin ra ja ja dekbe  */}
               <li>
                 <Link
-                  to="/dashboard/myCart"
+                  to="/dashboard/adminHome"
                   className="text-lg font-semibold text-slate-200">
                   <span>
                     <AiFillHome></AiFillHome>
@@ -47,7 +51,7 @@ const DashboardLayout = () => {
               </li>
               <li>
                 <Link
-                  to="/dashboard/allUsers"
+                  to="/dashboard/addItem"
                   className="text-lg font-semibold text-slate-200">
                   <span>
                     <FaUtensils></FaUtensils>
@@ -57,7 +61,7 @@ const DashboardLayout = () => {
               </li>
               <li>
                 <Link
-                  to="/dashboard/myCart"
+                  to="/dashboard/manageItems"
                   className="text-lg font-semibold text-slate-200">
                   <span>
                     <FaHandPointRight></FaHandPointRight>
@@ -67,7 +71,7 @@ const DashboardLayout = () => {
               </li>
               <li>
                 <Link
-                  to="/dashboard/allUsers"
+                  to="/dashboard/manageBook"
                   className="text-lg font-semibold text-slate-200">
                   <span>
                     <FaBook></FaBook>
@@ -88,22 +92,20 @@ const DashboardLayout = () => {
             </>
           ) : (
             <>
+            {/* sadaron user der jonno je sob menu gulo dekabe  */}
               <li>
                 <Link
-                  to="/dashboard/myCart"
+                  to="/dashboard/usersHome"
                   className="text-lg font-semibold text-slate-200">
                   <span>
                     <AiFillHome></AiFillHome>
                   </span>{" "}
                   Users Home
-                  <span className=" font-semibold text-orange-400">
-                    +{cart?.length || 0}
-                  </span>
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/dashboard/allUsers"
+                  to="/dashboard/reservation"
                   className="text-lg font-semibold text-slate-200">
                   <span>
                     <FaListUl></FaListUl>
@@ -113,7 +115,7 @@ const DashboardLayout = () => {
               </li>
               <li>
                 <Link
-                  to="/dashboard/myCart"
+                  to="/dashboard/payment"
                   className="text-lg font-semibold text-slate-200">
                   <span>
                     <FaHandPointRight></FaHandPointRight>
@@ -137,7 +139,7 @@ const DashboardLayout = () => {
               </li>
               <li>
                 <Link
-                  to="/dashboard/allUsers"
+                  to="/dashboard/addReviews"
                   className="text-lg font-semibold text-slate-200">
                   <span>
                     <FaUsers></FaUsers>
@@ -147,7 +149,7 @@ const DashboardLayout = () => {
               </li>
               <li>
                 <Link
-                  to="/dashboard/myCart"
+                  to="/dashboard/myBooking"
                   className="text-lg font-semibold text-slate-200">
                   <span>
                     <AiFillHome></AiFillHome>

@@ -11,9 +11,8 @@ const SocialLogin = () => {
   const handleSocialLogin = () => {
     googleSignup().then((result) => {
       const user = result.user;
-      console.log('this is user' ,user);
       const saveUser = { name: user.displayName, email: user.email };
-      console.log('save user: ', saveUser)
+
       fetch("http://localhost:5000/users", {
         method: "POST",
         headers: {
