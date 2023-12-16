@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import { AiOutlineShoppingCart } from "react-icons/ai";
@@ -7,11 +7,17 @@ import useCart from "../../../Hooks/useCart";
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [cart] = useCart()
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const handleLogOut = () => {
     logOut()
       .then(() => {})
       .catch((error) => console.log(error));
   };
+  const toggleMenu = () => {
+    // Toggle the menu visibility when the button is clicked
+    setIsMenuOpen(!isMenuOpen);
+  };
+  
   const menuOptions = (
     <>
       <li>
@@ -50,15 +56,9 @@ const NavBar = () => {
           Contact Us
         </Link>
       </li>
-
-      <li>
-        <a className="hover:text-orange-500 text-[16px] font-semibold ">
-          Our Shop
-        </a>
-      </li>
         <li className="mr-4">
           <Link to="/dashboard/myCart">
-            <button>
+            <button className="flex ">
               <h1 className="text-2xl">
                 <AiOutlineShoppingCart></AiOutlineShoppingCart>
               </h1>
@@ -92,8 +92,9 @@ const NavBar = () => {
     <>
       <div className="navbar fixed z-10 bg-opacity-40 bg-black text-white">
         <div className="navbar-start">
-          <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+        <div className="dropdown">
+            <label tabIndex={0} className="btn btn-ghost lg:hidden" onClick={toggleMenu}>
+              {/* Use the toggleMenu function on button click */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -108,22 +109,26 @@ const NavBar = () => {
                 />
               </svg>
             </label>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-              {menuOptions}
-            </ul>
+            {/* Conditionally render the menu based on isMenuOpen */}
+            {isMenuOpen && (
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-slate-600 rounded-box w-52"
+              >
+                <a className="normal-case text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#5bf755] to-[#ffa12d] hover:scale-105 transform transition-transform duration-300 ease-in-out  animate-float shadow-lg ">
+            TastyDash
+          </a>
+                {menuOptions}
+              </ul>
+            )}
           </div>
-          <a className="normal-case text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#5bf755] to-[#ffa12d] hover:scale-105 transform transition-transform duration-300 ease-in-out inline-block animate-float shadow-lg">
+          <a className="normal-case text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#5bf755] to-[#ffa12d] hover:scale-105 transform transition-transform duration-300 ease-in-out  animate-float shadow-lg hidden lg:flex">
             TastyDash
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal items-center px-1">{menuOptions}</ul>
         </div>
-        {/* <div className="navbar-end">
-          <a className="btn">Button</a>
-        </div> */}
       </div>
     </>
   );

@@ -1,6 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FaQuoteLeft } from 'react-icons/fa';
-
+import { FaQuoteLeft } from "react-icons/fa";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -13,7 +12,7 @@ import "@smastrom/react-rating/style.css";
 const Testimonial = () => {
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/review")
+    fetch("https://food-delivery-server-lyeo2f351-jintu45.vercel.app/review")
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);
@@ -43,8 +42,12 @@ const Testimonial = () => {
         {reviews.map((review) => (
           <SwiperSlide key={review._id}>
             <div className="text-center">
-                <p className="text-6xl text-center flex justify-center text-slate-500"><FaQuoteLeft></FaQuoteLeft></p>
-              <h2 className="text-2xl font-semibold text-orange-700">{review.name}</h2>
+              <p className="text-6xl text-center flex justify-center text-slate-500">
+                <FaQuoteLeft></FaQuoteLeft>
+              </p>
+              <h2 className="text-2xl font-semibold text-orange-700">
+                {review.name}
+              </h2>
               <div className="flex items-center justify-center my-3">
                 <Rating
                   className="text-center flex justify-center"
@@ -58,7 +61,6 @@ const Testimonial = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      
     </div>
   );
 };

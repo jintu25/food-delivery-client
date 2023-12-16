@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import signUpImg from "../../assets/others/signup.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { BiSolidHide, BiSolidShow } from 'react-icons/bi';
+import { BiSolidHide, BiSolidShow } from "react-icons/bi";
 import Title from "../../Components/HeadTitle/Title";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
@@ -11,8 +11,8 @@ import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const {createUser, updateUserProfile} = useContext(AuthContext)
-  const navigate = useNavigate()
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -22,33 +22,35 @@ const Registration = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    createUser(data.email, data.password)
-    .then(result => {
+    createUser(data.email, data.password).then((result) => {
       const user = result.user;
       updateUserProfile(data.name, data.photoURL)
-      .then(() => {
-       const saveUser = {name: data.name, email: data.email}
-       fetch('http://localhost:5000/users', {
-        method: 'POST',
-        headers: {
-          'content-type': "application/json"
-        },
-        body: JSON.stringify(saveUser)
-       })
-        reset()
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Sign Up successfully...',
-          showConfirmButton: false,
-          timer: 1500
+        .then(() => {
+          const saveUser = { name: data.name, email: data.email };
+          fetch(
+            "https://food-delivery-server-lyeo2f351-jintu45.vercel.app/users",
+            {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(saveUser),
+            }
+          );
+          reset();
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Sign Up successfully...",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/");
         })
-        navigate('/')
-      })
-      .catch(error => {
-        alert(error)
-      })
-    })
+        .catch((error) => {
+          alert(error);
+        });
+    });
   };
 
   const togglePasswordVisibility = () => {
@@ -56,7 +58,7 @@ const Registration = () => {
   };
   return (
     <div>
-      <Title title='tastyDash | signup'></Title>
+      <Title title="tastyDash | signup"></Title>
       <section className="flex py-12 flex-col md:flex-row h-screen items-center">
         <div className="bg-indigo-600 lg:block w-full md:w-1/2 xl:w-3/5 h-screen">
           <img src={signUpImg} alt="" className="w-full h-full object-cover" />
@@ -87,11 +89,17 @@ const Registration = () => {
                   autoFocus
                   required
                 />
-                {errors.name && <span className="text-red-500 text-sm font-semibold">Name field is required</span>}
+                {errors.name && (
+                  <span className="text-red-500 text-sm font-semibold">
+                    Name field is required
+                  </span>
+                )}
               </div>
 
               <div>
-                <label className="block text-gray-700">Type Your PhotoURL</label>
+                <label className="block text-gray-700">
+                  Type Your PhotoURL
+                </label>
                 <input
                   {...register("photoURL", { required: true })}
                   type="text"
@@ -101,7 +109,11 @@ const Registration = () => {
                   autoFocus
                   required
                 />
-                {errors.photoURL && <span className="text-red-500 text-sm font-semibold">photoURL field is required</span>}
+                {errors.photoURL && (
+                  <span className="text-red-500 text-sm font-semibold">
+                    photoURL field is required
+                  </span>
+                )}
               </div>
               <div className="mt-4">
                 <label className="block text-gray-700">Type your E-mail</label>
@@ -116,51 +128,59 @@ const Registration = () => {
               focus:bg-white focus:outline-none"
                   required
                 />
-                {errors.email && <span className="text-red-500 text-sm font-semibold">Please Type Your E-mail</span>}
+                {errors.email && (
+                  <span className="text-red-500 text-sm font-semibold">
+                    Please Type Your E-mail
+                  </span>
+                )}
               </div>
 
               <div className="mt-4">
-        <label className="block text-gray-700">Password</label>
-        <div className="relative">
-          <input
-            type={showPassword ? "text" : "password"}
-            placeholder="Type your password"
-            name="password"
-            className="input input-bordered w-full"
-            {...register("password", {
-              required: "Password is required",
-              minLength: {
-                value: 6,
-                message: "Password must be at least 6 characters",
-              },
-              pattern: {
-                value: /^(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/,
-                message: "Password must be strong",
-              },
-            })}
-          />
-          <button
-            type="button"
-            onClick={togglePasswordVisibility}
-            className="absolute top-1/2 right-3 transform -translate-y-1/2 focus:outline-none"
-          >
-            {showPassword ? (
-              <span className="text-2xl"><BiSolidShow></BiSolidShow></span>
-            ) : (
-              <span className="text-2xl"><BiSolidHide></BiSolidHide></span>
-            )}
-          </button>
-        </div>
-        {errors.password && (
-          <p role="alert" className="text-red-600">
-            {errors.password?.message}
-          </p>
-        )}
-      </div>
+                <label className="block text-gray-700">Password</label>
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Type your password"
+                    name="password"
+                    className="input input-bordered w-full"
+                    {...register("password", {
+                      required: "Password is required",
+                      minLength: {
+                        value: 6,
+                        message: "Password must be at least 6 characters",
+                      },
+                      pattern: {
+                        value:
+                          /^(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/,
+                        message: "Password must be strong",
+                      },
+                    })}
+                  />
+                  <button
+                    type="button"
+                    onClick={togglePasswordVisibility}
+                    className="absolute top-1/2 right-3 transform -translate-y-1/2 focus:outline-none">
+                    {showPassword ? (
+                      <span className="text-2xl">
+                        <BiSolidShow></BiSolidShow>
+                      </span>
+                    ) : (
+                      <span className="text-2xl">
+                        <BiSolidHide></BiSolidHide>
+                      </span>
+                    )}
+                  </button>
+                </div>
+                {errors.password && (
+                  <p role="alert" className="text-red-600">
+                    {errors.password?.message}
+                  </p>
+                )}
+              </div>
 
               <input
                 type="submit"
-                value='Sign Up'
+                value="Sign Up"
                 className="w-full block bg-indigo-500 hover:bg-indigo-400 focus:bg-indigo-400 text-white font-semibold rounded-lg
             px-4 py-3 mt-6"
               />

@@ -1,0 +1,64 @@
+
+.det-btn{
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+    vertical-align: middle;
+    display: inline-block;
+    border: none;
+    text-transform: uppercase;
+    text-align: center;
+    background-color: #eb0029;
+    color: white;
+    font-family:  'rubik' sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    padding: 21px 35px 20px 35px;
+    border-radius: 999px;
+    -webkit-transition: background-color 0.25s linear, color 0.4s ease-in-out;
+    transition: background-color 0.25s linear, color 0.4s ease-in-out;
+}
+.det-btn::before{
+    content: "";
+    position: absolute;
+    height: 100%;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    background-color: #010f1c;
+    z-index: -1;
+    -webkit-transition: all 0.4s ease-out;
+    transition: all 0.4s ease-out;
+    border-radius: inherit;
+}
+.img-box6 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-left: -100px;
+}
+@media (min-width: 1300px) {.img-box6 {
+    margin-right: 56px;
+}
+}
+.img1 {
+    margin-right: -200px;
+    -webkit-animation: movingX 8s linear infinite;
+    animation: movingX 8s linear infinite;
+    z-index: -1;
+}
+@keyframes movingX {
+    0% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+    50% {
+        -webkit-transform: translateX(50px);
+        transform: translateX(50px);
+    }
+    100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}

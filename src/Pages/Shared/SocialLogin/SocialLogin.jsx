@@ -13,7 +13,7 @@ const SocialLogin = () => {
       const user = result.user;
       const saveUser = { name: user.displayName, email: user.email };
 
-      fetch("http://localhost:5000/users", {
+      fetch("https://food-delivery-server-lyeo2f351-jintu45.vercel.app/users", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -22,7 +22,7 @@ const SocialLogin = () => {
       })
         .then((res) => res.json())
         .then(() => {
-            navigate(from, { replace: true });
+          navigate(from, { replace: true });
         });
     });
   };

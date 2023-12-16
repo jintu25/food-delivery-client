@@ -17,6 +17,7 @@ import axios from "axios";
 const googleProvider = new GoogleAuthProvider();
 const auth = getAuth(app);
 export const AuthContext = createContext();
+
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -32,15 +33,15 @@ const AuthProvider = ({ children }) => {
   };
 
   const googleSignup = () => {
-    setLoading(true)
-   return signInWithPopup(auth, googleProvider)
-  }
+    setLoading(true);
+    return signInWithPopup(auth, googleProvider);
+  };
   const updateUserProfile = (name, photo) => {
-   return updateProfile(auth.currentUser, {
+    return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo,
     });
-  }
+  };
 
   const logOut = () => {
     setLoading(true);
@@ -49,18 +50,23 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-    
-      if(currentUser){
-        axios.post('http://localhost:5000/jwt', {email: currentUser.email})
-        .then(data =>{
-            localStorage.setItem('access-token', data.data.token)
-            
+
+      if (currentUser) {
+        axios
+          .post(
+            "https://food-delivery-server-lyeo2f351-jintu45.vercel.app/jwt",
+            {
+              email: currentUser.email,
+            }
+          )
+          .then((data) => {
+            localStorage.setItem("access-token", data.data.token);
+
             setLoading(false);
-        })
-    }
-    else{
-        localStorage.removeItem('access-token')
-    }
+          });
+      } else {
+        localStorage.removeItem("access-token");
+      }
       setLoading(false);
     });
     return () => {

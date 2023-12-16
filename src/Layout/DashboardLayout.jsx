@@ -30,7 +30,7 @@ const DashboardLayout = () => {
         <label
           htmlFor="my-drawer-2"
           className="btn btn-primary drawer-button lg:hidden">
-          Open drawer
+          Dashboard
         </label>
       </div>
       <div className="drawer-side ">
@@ -42,7 +42,7 @@ const DashboardLayout = () => {
               <li>
                 <Link
                   to="/dashboard/adminHome"
-                  className="text-lg font-semibold text-slate-200">
+                  className="text-lg font-semibold text-slate-200 flex">
                   <span>
                     <AiFillHome></AiFillHome>
                   </span>{" "}
@@ -52,7 +52,7 @@ const DashboardLayout = () => {
               <li>
                 <Link
                   to="/dashboard/addItem"
-                  className="text-lg font-semibold text-slate-200">
+                  className="text-lg font-semibold text-slate-200 flex">
                   <span>
                     <FaUtensils></FaUtensils>
                   </span>
@@ -62,7 +62,7 @@ const DashboardLayout = () => {
               <li>
                 <Link
                   to="/dashboard/manageItems"
-                  className="text-lg font-semibold text-slate-200">
+                  className="text-lg font-semibold text-slate-200 flex">
                   <span>
                     <FaHandPointRight></FaHandPointRight>
                   </span>
@@ -72,7 +72,7 @@ const DashboardLayout = () => {
               <li>
                 <Link
                   to="/dashboard/manageBook"
-                  className="text-lg font-semibold text-slate-200">
+                  className="text-lg font-semibold text-slate-200 flex">
                   <span>
                     <FaBook></FaBook>
                   </span>
@@ -82,7 +82,7 @@ const DashboardLayout = () => {
               <li>
                 <Link
                   to="/dashboard/allUsers"
-                  className="text-lg font-semibold text-slate-200">
+                  className="text-lg font-semibold text-slate-200 flex">
                   <span>
                     <FaUsers></FaUsers>
                   </span>
@@ -95,8 +95,8 @@ const DashboardLayout = () => {
             {/* sadaron user der jonno je sob menu gulo dekabe  */}
               <li>
                 <Link
-                  to="/dashboard/usersHome"
-                  className="text-lg font-semibold text-slate-200">
+                  to="/dashboard/userHome"
+                  className="text-lg font-semibold text-slate-200 flex">
                   <span>
                     <AiFillHome></AiFillHome>
                   </span>{" "}
@@ -105,8 +105,8 @@ const DashboardLayout = () => {
               </li>
               <li>
                 <Link
-                  to="/dashboard/reservation"
-                  className="text-lg font-semibold text-slate-200">
+                  to="/dashboard/payment"
+                  className="text-lg font-semibold text-slate-200 flex">
                   <span>
                     <FaListUl></FaListUl>
                   </span>
@@ -115,8 +115,8 @@ const DashboardLayout = () => {
               </li>
               <li>
                 <Link
-                  to="/dashboard/payment"
-                  className="text-lg font-semibold text-slate-200">
+                  to=""
+                  className="text-lg font-semibold text-slate-200 flex">
                   <span>
                     <FaHandPointRight></FaHandPointRight>
                   </span>
@@ -127,7 +127,7 @@ const DashboardLayout = () => {
               <li>
                 <Link
                   to="/dashboard/myCart"
-                  className="text-lg font-semibold text-slate-200">
+                  className="text-lg font-semibold text-slate-200 flex">
                   <span>
                     <AiFillHome></AiFillHome>
                   </span>{" "}
@@ -139,8 +139,8 @@ const DashboardLayout = () => {
               </li>
               <li>
                 <Link
-                  to="/dashboard/addReviews"
-                  className="text-lg font-semibold text-slate-200">
+                  to="/dashboard/addReview"
+                  className="text-lg font-semibold text-slate-200 flex">
                   <span>
                     <FaUsers></FaUsers>
                   </span>
@@ -150,7 +150,7 @@ const DashboardLayout = () => {
               <li>
                 <Link
                   to="/dashboard/myBooking"
-                  className="text-lg font-semibold text-slate-200">
+                  className="text-lg font-semibold text-slate-200 flex">
                   <span>
                     <AiFillHome></AiFillHome>
                   </span>{" "}

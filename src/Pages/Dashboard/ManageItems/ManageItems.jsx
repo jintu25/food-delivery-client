@@ -80,7 +80,6 @@ const ManageItems = () => {
                       "admin"
                     ) : (
                       <button
-                        onClick={() => handleMakeAdmin(item)}
                         className="btn btn-accent text-white btn-sm text-lg">
                         <BiEdit></BiEdit>
                       </button>

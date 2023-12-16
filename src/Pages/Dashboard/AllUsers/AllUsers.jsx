@@ -7,10 +7,10 @@ const AllUsers = () => {
   const token = localStorage.getItem("access-token");
 
   const [axiosSecure] = useAxiosSecure();
-  const { data: users = [], refetch } = useQuery(['users'], async () => {
-      const res = await axiosSecure.get('/users')
-      return res.data;
-  })
+  const { data: users = [], refetch } = useQuery(["users"], async () => {
+    const res = await axiosSecure.get("/users");
+    return res.data;
+  });
 
   const handleDelete = (user) => {
     Swal.fire({
@@ -23,9 +23,12 @@ const AllUsers = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/users/${user._id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://food-delivery-server-lyeo2f351-jintu45.vercel.app/users/${user._id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
@@ -37,25 +40,27 @@ const AllUsers = () => {
     });
   };
 
-const handleMakeAdmin = user =>{
-  fetch(`http://localhost:5000/users/admin/${user._id}`, {
-      method: 'PATCH'
-  })
-  .then(res => res.json())
-  .then(data => {
-
-      if(data.modifiedCount){
+  const handleMakeAdmin = (user) => {
+    fetch(
+      `https://food-delivery-server-lyeo2f351-jintu45.vercel.app/users/admin/${user._id}`,
+      {
+        method: "PATCH",
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount) {
           refetch();
           Swal.fire({
-              position: 'top-end',
-              icon: 'success',
-              title: `${user.name} is an Admin Now!`,
-              showConfirmButton: false,
-              timer: 1500
-            })
-      }
-  })
-}
+            position: "top-end",
+            icon: "success",
+            title: `${user.name} is an Admin Now!`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+  };
 
   return (
     <div className="bg-white p-8 shadow-2xl rounded-xl">
@@ -86,15 +91,15 @@ const handleMakeAdmin = user =>{
                 <td className="text-[16px] font-medium">{user.name}</td>
                 <td className="text-[16px] font-medium">{user.email}</td>
                 <td className="font-bold text-sky-600">
-                  {user?.role === "admin" ? 
+                  {user?.role === "admin" ? (
                     "admin"
-                   : 
+                  ) : (
                     <button
                       onClick={() => handleMakeAdmin(user)}
                       className="btn btn-accent text-white btn-sm text-lg">
                       <FaUserEdit></FaUserEdit>
                     </button>
-                  }
+                  )}
                 </td>
                 <td>
                   <button

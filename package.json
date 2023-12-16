@@ -24,6 +24,7 @@
     "react-hook-form": "^7.46.0",
     "react-icons": "^4.10.1",
     "react-loader-spinner": "^5.4.5",
+    "react-rating-stars-component": "^2.2.0",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.15.0",
     "react-simple-captcha": "^9.3.0",

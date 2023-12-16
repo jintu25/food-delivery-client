@@ -6,51 +6,48 @@ import useCart from "../../Hooks/useCart";
 
 const FoodCards = ({ item }) => {
   const { image, name, recipe, price, _id } = item;
-  const {user} = useContext(AuthContext)
-  const [cart, refetch] = useCart()
-  const navigate = useNavigate()
-  const location = useLocation()
-  const handleAddToCart = item => {
+  const { user } = useContext(AuthContext);
+  const [cart, refetch] = useCart();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const handleAddToCart = (item) => {
     if (user && user.email) {
-      const cartItem = {menuId: _id, name, price, image, email: user.email }
+      const cartItem = { menuId: _id, name, price, image, email: user.email };
       // Send a POST request with the item data to add it to the cart
-      fetch('http://localhost:5000/carts', {
-        method: 'POST',
+      fetch("https://food-delivery-server-lyeo2f351-jintu45.vercel.app/carts", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json', // Specify the content type as JSON
+          "Content-Type": "application/json", // Specify the content type as JSON
         },
         body: JSON.stringify(cartItem), // Serialize the item object to JSON
       })
-        .then(res => res.json())
-        .then(data => {
+        .then((res) => res.json())
+        .then((data) => {
           if (data.insertedId) {
-            refetch() //cart item update 
+            refetch(); //cart item update
             Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: 'Add To Cart Add Successfully...',
+              position: "center",
+              icon: "success",
+              title: "Add To Cart Add Successfully...",
               showConfirmButton: false,
-              timer: 1500
+              timer: 1500,
             });
           }
         });
-    } 
-    else {
+    } else {
       Swal.fire({
-        title: 'you are not login?',
+        title: "you are not login?",
         text: "Please login first",
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'login now'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "login now",
       }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire(
-            navigate('/login', {state: {from: location}})
-          )
+          Swal.fire(navigate("/login", { state: { from: location } }));
         }
-      })
+      });
     }
   };
   return (
@@ -73,7 +70,9 @@ const FoodCards = ({ item }) => {
               <span className="text-3xl font-bold text-gray-900 dark:text-white">
                 ${price}
               </span>
-              <button onClick={() =>  handleAddToCart(item)} className="border-b-4 mt-6 text-lg font-semibold py-2 px-5 rounded-2xl shadow-xl border-yellow-500 text-[#BB8506] uppercase hover:bg-black hover:text-[#BB8506] delay-150 hover:delay-300">
+              <button
+                onClick={() => handleAddToCart(item)}
+                className="border-b-4 mt-6 text-lg font-semibold py-2 px-5 rounded-2xl shadow-xl border-yellow-500 text-[#BB8506] uppercase hover:bg-black hover:text-[#BB8506] delay-150 hover:delay-300">
                 Add To Cart
               </button>
             </div>

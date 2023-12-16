@@ -1,4 +1,4 @@
-const CoverPages = ({img, title, details}) => {
+const CoverPages = ({img, title, details,}) => {
   return (
     <div
       className="px-10 py-20 bg-cover bg-center bg-fixed flex justify-center items-center my-20 "
